@@ -1,13 +1,12 @@
 //import { useState } from 'react'
-import './App.css'
+import {Routes, Route} from 'react-router';
+import GroupPage from '../components/GroupPage';
 
 function App() {
   return (
-    <>
-    <div>
-        <h1 className="text-6xl text-black bg-orange-100 p-3">SlangShame</h1>
-    </div>
-    </>
+    <Routes>
+      <Route path='/' element={<GroupPage />} />
+    </Routes>
   )
 }
 
