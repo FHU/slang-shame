@@ -1,7 +1,7 @@
 //import { useState } from 'react'
 import {Routes, Route} from 'react-router';
-import GroupPage from '../pages/GroupPage';
-import ReportPage from '../pages/ReportPage';
+import GroupPage from './pages/GroupPage';
+import ReportPage from './pages/ReportPage';
 
 
 function App() {
