@@ -1,0 +1,35 @@
+[
+    {
+        "firstName": "Trent",
+        "lastName": "Adams",
+        "title": "Assistant Dean of Graduate Admissions",
+        "avatarURL": "https://fhu.edu/wp-content/uploads/adams_trent-1.jpg",
+        "dateAdded": "10/30/2025"
+    },
+    {
+        "firstName": "Michael",
+        "lastName": "Aldrich",
+        "title": "Benson Residency Hall Supervisor",
+        "avatarURL": "https://fhu.edu/wp-content/uploads/aldrich_michael-webres.jpg",
+        "dateAdded": "10/30/2025"
+    },
+    {
+        "firstName": "Julie",
+        "lastName": "Aldrich",
+        "title": "Dorm Supervisor- Hall Roland",
+        "avatarURL": "https://fhu.edu/wp-content/uploads/julie-aldrich.jpg",
+        "dateAdded": "10/30/2025"
+    },
+    {
+        "firstName": "Tony",
+        "lastName": "Allen",
+        "title": "Dean of Student Life",
+        "dateAdded": "10/30/2025"
+    },
+    {
+        "firstName": "Caleb",
+        "lastName": "Arnold",
+        "title": "IT Specialist 1",
+        "dateAdded": "10/30/2025"
+    }
+]
