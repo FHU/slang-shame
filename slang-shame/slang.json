@@ -180,7 +180,8 @@
   },
   {
     "term": "Fr",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Interjection"]
   },
   {
     "term": "Ayo",
@@ -209,7 +210,8 @@
   },
   {
     "term": "Bet",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Interjection"]
   },
   {
     "term": "Rizzler",
@@ -218,11 +220,13 @@
   },
   {
     "term": "Cap",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Adjective", "Interjection"]
   },
   {
     "term": "Drip",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Noun", "Adjective"]
   },
   {
     "term": "Aura",
@@ -231,7 +235,8 @@
   },
   {
     "term": "Bruh",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Interjection"]
   },
   {
     "term": "Salty",
@@ -245,11 +250,13 @@
   },
   {
     "term": "Zang",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Interjection"]
   },
   {
     "term": "Yeet",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Interjection"]
   },
   {
     "term": "Bop",
@@ -298,202 +305,252 @@
   },
   {
     "term": "Sheesh",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Interjection"]
   },
   {
     "term": "Chad",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Noun"]
   },
   {
     "term": "Giggachad",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Noun"]
   },
   {
     "term": "Glaze",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Verb"]
   },
   {
     "term": "Dog water",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Adjective"]
   },
   {
     "term": "Fam",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Noun"]
   },
   {
     "term": "Yapping",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Verb"]
   },
   {
     "term": "Kai Cenat",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Noun"]
   },
   {
     "term": "Cheugy",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Adjective"]
   },
   {
     "term": "Chat",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Noun"]
   },
   {
     "term": "Lock in",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Verb"]
   },
   {
     "term": "Glow-up",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Noun"]
   },
   {
     "term": "Legit",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Adjective"]
   },
   {
     "term": "Let him cook",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Verb"]
   },
   {
     "term": "Finna",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Adverb"]
   },
   {
     "term": "Squad",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Noun"]
   },
   {
     "term": "Ghosted",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Verb"]
   },
   {
     "term": "Real one",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Noun"]
   },
   {
     "term": "Pull up",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Verb"]
   },
   {
     "term": "Infinite money glitch",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Noun"]
   },
   {
     "term": "Bestie",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Noun"]
   },
   {
     "term": "Main character energy",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Noun"]
   },
   {
     "term": "Fit",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Noun"]
   },
   {
     "term": "Roasted",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Verb"]
   },
   {
     "term": "Quest marker",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Noun"]
   },
   {
     "term": "Clout",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Noun"]
   },
   {
     "term": "Extra",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Adjective"]
   },
   {
     "term": "Ick",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Adjective"]
   },
   {
     "term": "Mood",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Noun"]
   },
   {
     "term": "Shook",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Adjective"]
   },
   {
     "term": "Shooketh",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Adjective"]
   },
   {
     "term": "Chicken jockey",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Noun"]
   },
   {
     "term": "Glizzy",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Adjective"]
   },
   {
     "term": "Crash out",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Verb"]
   },
   {
     "term": "Huzz",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Noun"]
   },
   {
     "term": "Chopped",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Adjective"]
   },
   {
     "term": "Bruzz",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Noun"]
   },
   {
     "term": "Looksmaxxing",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Verb"]
   },
   {
     "term": "Cooked",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Adjective"]
   },
   {
     "term": "Low taper fade",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Noun"]
   },
   {
     "term": "Yapper",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Noun"]
   },
   {
     "term": "Freddy Fazbear",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Noun"]
   },
   {
     "term": "Grimace shake",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Noun"]
   },
   {
     "term": "Skibidi toilet",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Noun"]
   },
   {
     "term": "Mogging",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Verb"]
   },
   {
     "term": "Unc",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Noun"]
   },
   {
     "term": "Diddy",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Noun"]
   },
   {
     "term": "Baka",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Noun"]
   },
   {
     "term": "Blud",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Noun"]
   },
   {
     "term": "Pookie",
-    "dateAdded": "10/30/2025"
+    "dateAdded": "10/30/2025",
+    "partOfSpeach": ["Noun"]
   }
 ]
