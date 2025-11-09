@@ -1,5 +1,6 @@
 import {useState, useEffect } from 'react';
 import { db } from '../appwriteConfig';
+import SlangSearch from '../components/search-comp';
 
 function TestPage() {
     const [groups, setGroups] = useState<any[]>([])
@@ -22,7 +23,10 @@ function TestPage() {
     }
     return (
     <div className='m-2'>
-        <h1> Here is the sample groups:</h1>
+        <h1> Search Component Test</h1>
+        <SlangSearch slangDataSource="/slang.json" peopleDataSource="/people/people.json" />
+
+        <h2 className='mt-8'> Here is the sample groups:</h2>
         <div className='m-2'>
         {groups.map((g) => (
     <article className='border-4 border-black' key={g.$id}>
@@ -31,7 +35,7 @@ function TestPage() {
       <p>Suspects: {g.suspectCount ? g.suspectCount : <span>null</span>}</p>
       <p>Reporters: {g.reporterCount ? g.reporterCount : <span>null</span>}</p>
     </article>
-    
+
   ))}
   </div>
     </div>
