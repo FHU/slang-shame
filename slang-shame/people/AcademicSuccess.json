@@ -1,0 +1,49 @@
+[
+    {
+        "firstName": "Nathalie",
+        "lastName": "Brumback",
+        "Title": "Assistant Dean of Students",
+        "avatarURL": "https://fhu.edu/wp-content/uploads/brumback_nathalie.jpg",
+        "dateAdded": "11/06/2025"
+    },
+
+    {
+        "firstName": "Kim",
+        "lastName": "Cook",
+        "Title": "Academic Success & Records Management Clerk",
+        "dateAdded": "11/06/2025"
+    },
+
+    {
+        "firstName": "Susan",
+        "lastName": "Kimpel",
+        "Title": "Director of Academic Success & Records",
+        "avatarURL": "https://fhu.edu/wp-content/uploads/kimpel_susan-1.jpg",
+        "dateAdded": "11/06/2025"
+    },
+
+    {
+        "firstName": "Annie",
+        "lastName": "Pickens",
+        "Title": "Student Success Coach",
+        "avatarURL": "https://fhu.edu/wp-content/uploads/pickens_annie.jpg",
+        "dateAdded": "11/06/2025"
+    },
+
+    {
+        "firstName": "Sara",
+        "lastName": "Wood",
+        "Title": "Graduate Student Success Coach",
+        "avatarURL": "https://fhu.edu/wp-content/uploads/wood_sarah.jpg",
+        "dateAdded": "11/06/2025"
+    },
+
+    {
+        "firstName": "Jason",
+        "lastName": "Brashier",
+        "Title": "Vice President for Financial Services / Chief Financial Officer",
+        "avatarURL": "https://fhu.edu/wp-content/uploads/braisher_jason-1.jpg",
+        "dateAdded": "11/06/2025"
+    }
+]
+    
