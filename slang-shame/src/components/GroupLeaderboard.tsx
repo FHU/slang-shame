@@ -2,7 +2,11 @@
 
 const GroupLeaderboard = () => {
   return (
-    <div>GroupLeaderboard</div>
+    
+    <div className="text-4xl font-bold text-black text-center">
+        GroupLeaderboard
+      
+    </div>
   )
 }
 
