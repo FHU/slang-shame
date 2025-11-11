@@ -1,7 +1,7 @@
 //import React from 'react'
 import SlangSelect from '../components/SlangSelect'
 import ReportButton from '../components/ReportButton'
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router';
 
 import PersonSelect from '../components/PersonSelect';
 

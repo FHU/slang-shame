@@ -1,4 +1,4 @@
-import {Routes, Route, Navigate} from 'react-router-dom';
+import {Routes, Route, Navigate} from 'react-router';
 import GroupPage from './pages/GroupPage';
 import ReportPage from './pages/ReportPage';
 import LeaderBoardPage from './pages/LeaderBoardPage'; 

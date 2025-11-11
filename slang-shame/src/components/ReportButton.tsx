@@ -8,7 +8,7 @@
 
 // export default ReportButton
 
-import { useNavigate, useParams } from 'react-router-dom' 
+import { useNavigate, useParams } from 'react-router' 
 type ReportButtonProps = { reportId: string } 
 const ReportButton = ({ reportId }: ReportButtonProps) => { const navigate = useNavigate() 
 const { group } = useParams() 

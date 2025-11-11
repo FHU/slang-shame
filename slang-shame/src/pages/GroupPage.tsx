@@ -4,7 +4,7 @@ import GroupTitle from '../components/GroupTitle';
 import GroupLeaderboard from '../components/GroupLeaderboard';
 
 
-import { Link, useParams } from 'react-router-dom'; 
+import { Link, useParams } from 'react-router'; 
 
 export const GroupPage = () => {
     const params = useParams();
