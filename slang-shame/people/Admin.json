@@ -1,0 +1,52 @@
+[
+    {
+        "firstName": "Dave",
+        "lastName": "Clouse",
+        "Title": "Senior Vice-President",
+        "avatarURL": "https://fhu.edu/wp-content/uploads/clouse_dave.jpg",
+        "dateAdded": "11/06/2025"
+    },
+
+    {
+        "firstName": "Kathy",
+        "lastName": "Harbison",
+        "Title": "Vice President for Student Development",
+        "avatarURL": "https://fhu.edu/wp-content/uploads/harbison_kathy.jpg",
+        "dateAdded": "11/06/2025"
+    },
+
+    {
+        "firstName": "LeAnn",
+        "lastName": "Davis",
+        "Title": "Vice President of Academics",
+        "avatarURL": "https://fhu.edu/wp-content/uploads/davis_leanne.jpg",
+        "dateAdded": "11/06/2025"
+    },
+
+    {
+        "firstName": "TJ",
+        "lastName": "Kirk",
+        "Title": "Vice President for Student Services",
+        "avatarURL": "https://fhu.edu/wp-content/uploads/kirk_tj.jpg",
+        "dateAdded": "11/06/2025"
+    },
+
+    {
+        "firstName": "David",
+        "lastName": "Shannon",
+        "Title": "President",
+        "avatarURL": "https://fhu.edu/wp-content/uploads/shannon_david.jpg",
+        "dateAdded": "11/06/2025"
+    }
+]
+
+
+
+
+
+
+
+
+
+
+]
