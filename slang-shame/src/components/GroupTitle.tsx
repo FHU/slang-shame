@@ -2,11 +2,10 @@
 
 export const GroupTitle = () => {
   return (
-    <>
-    <div>
-        <h1 className="text-6xl text-black bg-orange-100 p-3">SlangShame</h1>
-    </div>
-    </>
+   <div>
+    <img src="/Screenshot-LogoSlang.jpeg" alt="Slang Shame Logo" className="w-300 h-32 mx-auto" />
+   </div>
+    
   )
 }
 
