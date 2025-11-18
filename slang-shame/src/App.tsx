@@ -2,7 +2,7 @@ import {Routes, Route, Navigate} from 'react-router';
 import GroupPage from './pages/GroupPage';
 import ReportPage from './pages/ReportPage';
 import LeaderBoardPage from './pages/LeaderBoardPage'; 
-import TestPage from './pages/TestPage'
+import DevRoutes from './routes/DevRoutes';
 
 
 function App() {
@@ -10,9 +10,13 @@ function App() {
     <Routes>
       {/*Route path="/" redirects to "/group-default" */}
       <Route path="/" element={<Navigate to="/FHU" replace />} />
-      <Route path='/test' element={<TestPage />} />
+
+      {/* Dev Pages */}
+      <Route path="/dev/*" element={<DevRoutes />} />
+
+      {/* Normal User Front End */}
       <Route path='/:group' element={<GroupPage />} />
-      <Route path="/:group/leaderboard" element={<LeaderBoardPage />} /> {/* ✅ New route */}
+      <Route path="/:group/leaderboard" element={<LeaderBoardPage />} />
       <Route path='/:group/report/:id' element={<ReportPage />} />
       
     </Routes>
