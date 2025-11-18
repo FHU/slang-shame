@@ -2,6 +2,15 @@ import {useState, useEffect } from 'react';
 import { db } from '../appwriteConfig';
 import SlangSearch from '../components/search-comp';
 
+const slangData = "PLACEHOLDER"
+
+const fetchSlangData = async () => {
+  const res = await fetch(slangData);
+  const data = await res.json();
+  console.log(data);
+  return data;
+};
+
 function TestPage() {
     const [groups, setGroups] = useState<any[]>([])
 
