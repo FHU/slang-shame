@@ -3,7 +3,7 @@ import GroupPage from './pages/GroupPage';
 import ReportPage from './pages/ReportPage';
 import LeaderBoardPage from './pages/LeaderBoardPage'; 
 import TestPage from './pages/TestPage'
-
+import NotFound from './pages/NotFound'; 
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
       <Route path='/:group' element={<GroupPage />} />
       <Route path="/:group/leaderboard" element={<LeaderBoardPage />} /> {/* ✅ New route */}
       <Route path='/:group/report/:id' element={<ReportPage />} />
-      
+      <Route path="*" element={<NotFound />} /> 
     </Routes>
   )
 }
