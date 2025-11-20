@@ -12,7 +12,7 @@ const NotFound: React.FC = () => {
   return (
     <div
       style={{
-        backgroundImage: 'url("/404p2.jpg")',
+        backgroundImage: 'url("/Dark404.jpg")',
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
@@ -28,7 +28,7 @@ const NotFound: React.FC = () => {
       }}
     >
       {/* Stylized 404 text */}
-      <h1 style={{ fontSize: "6rem", marginBottom: "0.5rem", color: "#7FDBFF" }}>404</h1>
+      <h1 style={{ fontSize: "6rem", marginBottom: "0.5rem", color: "#8f1520" }}>404</h1>
 
       {/* Humor-infused message */}
       <p style={{ fontSize: "1.5rem", marginBottom: "1rem" }}>
@@ -42,7 +42,7 @@ const NotFound: React.FC = () => {
           to={params.group ? `/${params.group}` : "/FHU"}
           style={{
             padding: "10px 20px",
-            backgroundColor: "#7FDBFF",
+            backgroundColor: "#8f1520",
             color: "#000",
             borderRadius: "8px",
             textDecoration: "none",
