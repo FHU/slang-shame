@@ -1,1 +1,27 @@
+/* Import Tailwind in one line */
 @import "tailwindcss";
+
+/* Light mode theme variables */
+:root {
+  --color-primary: #6a040f;   /* deep red */
+  --color-secondary: #3d405b; /* slate blue */
+  --color-accent: #414833;    /* olive tone */
+  --color-black: #000000;     /* pure black */
+
+  --color-primary-foreground: #ffffff;
+  --color-secondary-foreground: #ffffff;
+  --color-accent-foreground: #ffffff;
+}
+
+/* Dark mode overrides */
+.dark {
+  --color-primary: #8f1520;   /* brighter red for dark mode */
+  --color-secondary: #4b4e6e; /* lighter blue-gray */
+  --color-accent: #596146;    /* softened olive */
+  --color-black: #0b0b0b;     /* near-black background */
+
+  --color-primary-foreground: #ffffff;
+  --color-secondary-foreground: #eaeaf5;
+  --color-accent-foreground: #eef0e8;
+}
+
