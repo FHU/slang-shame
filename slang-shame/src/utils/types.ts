@@ -36,6 +36,7 @@ export type Suspects = Models.Row & {
     lastName: string | null;
     title: string;
     groupID: Groups;
+    avatarURL: string | null;
 }
 
 export type Reporters = Models.Row & {
