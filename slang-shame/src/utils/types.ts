@@ -62,6 +62,16 @@ export type Slang = Models.Row & {
     useFrequency: number | null;
     originYear: string | null;
     exampleUsage: string | null;
+//May need to update part of speech to only have these:
+// Noun
+// Verb
+// Adverb
+// Adjective
+// Prepositions
+// Interjection
+// Onomatopoeia
+// Prefix
+// Suffix
     partOfSpeech: string[] | null;
 }
 
