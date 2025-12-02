@@ -1,11 +1,10 @@
 import {useState, useEffect } from 'react';
 import { db } from '../database';
 import SlangSearch from '../components/search-comp';
-//import type { Models } from 'appwrite';
-//import type { Groups } from "../utils/types";
+import type { Groups } from "../utils/types";
 
 function TestPage() {
-    const [groups, setGroups] = useState<any>()
+    const [groups, setGroups] = useState<Groups[]>([])
 
     useEffect(() => {
         getGroups();

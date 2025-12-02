@@ -11,40 +11,7 @@ type TableRowMap = {
     suspects: Suspects;
 };
 
-const tables = [
-    {
-        'database_id':database_id,
-        'id':'groups',
-        'name':'groups'
-    },
-    {
-        'database_id':database_id,
-        'id':'reporters',
-        'name':'reporters'
-    },
-    {
-        'database_id':database_id,
-        'id':'reports',
-        'name':'reports'
-    },
-    {
-        'database_id':database_id,
-        'id':'slang',
-        'name':'slang'
-    },
-    {
-        'database_id':database_id,
-        'id':'subgroups',
-        'name':'subgroups'
-    },
-    {
-        'database_id':database_id,
-        'id':'suspects',
-        'name':'suspects'
-    }
-] as const;
-
-type TableName = typeof tables[number]["name"];
+type TableName = keyof TableRowMap;
 
 interface TableAPI<Row> {
     list: (queries?: string[]) => Promise<{ rows: Row[]; total: number }>;
@@ -57,34 +24,44 @@ type DB = {
     [K in TableName]: TableAPI<TableRowMap[K]>;
 };
 
-const db = {} as DB;
-
-// The loop that adds functions to the table
-for (const table of tables) {
-    db[table.name] = {
+// Helper function to create a properly typed table API
+function createTableAPI<T extends TableName>(
+    databaseId: string,
+    tableId: string
+): TableAPI<TableRowMap[T]> {
+    return {
         list: (queries?: ReturnType<typeof Query.equal>[]) =>
             database.listRows({
-                databaseId: table.database_id,
-                tableId: table.id,
+                databaseId,
+                tableId,
                 queries
             }).then(res => ({
                 total: res.total,
-                rows: res.rows as TableRowMap[typeof table.name][]
+                rows: res.rows as unknown as TableRowMap[T][]
             })),
         // The following could be added or deleted
         // get: (id: string) =>
         //     database.getRow({
-        //         databaseId: table.database_id,
-        //         tableId: table.id,
+        //         databaseId,
+        //         tableId,
         //         rowId: id
         //     }),
         // delete: (id: string) =>
         //     database.deleteRow({
-        //         databaseId: table.database_id,
-        //         tableId: table.id,
+        //         databaseId,
+        //         tableId,
         //         rowId: id
         //     })
     };
 }
+
+const db: DB = {
+    groups: createTableAPI<'groups'>(database_id, 'groups'),
+    reporters: createTableAPI<'reporters'>(database_id, 'reporters'),
+    reports: createTableAPI<'reports'>(database_id, 'reports'),
+    slang: createTableAPI<'slang'>(database_id, 'slang'),
+    subgroups: createTableAPI<'subgroups'>(database_id, 'subgroups'),
+    suspects: createTableAPI<'suspects'>(database_id, 'suspects'),
+};
 
 export {db}
