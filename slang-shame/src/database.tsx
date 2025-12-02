@@ -1,5 +1,5 @@
 import { database, database_id} from "./appwriteConfig";
-import { Query } from 'appwrite';
+import { type Models, ID } from 'appwrite';
 import type { Groups, Subgroups, Reports, Reporters, Slang, Suspects } from "./utils/types";
 
 type TableRowMap = {
@@ -13,12 +13,15 @@ type TableRowMap = {
 
 type TableName = keyof TableRowMap;
 
+// Helper type to extract the data fields (excluding Models.Row metadata)
+type RowData<Row> = Omit<Row, keyof Models.Row>;
+
 interface TableAPI<Row> {
     list: (queries?: string[]) => Promise<{ rows: Row[]; total: number }>;
-    //get: (id: string) => Promise<Row>;
-    //create: (data: Omit<Row, keyof Models.Row>) => Promise<Row>;
-    //update: (id: string, data: Partial<Omit<Row, keyof Models.Row>>) => Promise<Row>;
-    //delete: (id: string) => Promise<void>;
+    get: (rowId: string, queries?: string[]) => Promise<Row>;
+    create: (data: Partial<RowData<Row>>, rowId?: string, permissions?: string[]) => Promise<Row>;
+    update: (rowId: string, data: Partial<RowData<Row>>, permissions?: string[]) => Promise<Row>;
+    delete: (rowId: string) => Promise<void>;
 }
 type DB = {
     [K in TableName]: TableAPI<TableRowMap[K]>;
@@ -30,7 +33,7 @@ function createTableAPI<T extends TableName>(
     tableId: string
 ): TableAPI<TableRowMap[T]> {
     return {
-        list: (queries?: ReturnType<typeof Query.equal>[]) =>
+        list: (queries?: string[]) =>
             database.listRows({
                 databaseId,
                 tableId,
@@ -39,19 +42,39 @@ function createTableAPI<T extends TableName>(
                 total: res.total,
                 rows: res.rows as unknown as TableRowMap[T][]
             })),
-        // The following could be added or deleted
-        // get: (id: string) =>
-        //     database.getRow({
-        //         databaseId,
-        //         tableId,
-        //         rowId: id
-        //     }),
-        // delete: (id: string) =>
-        //     database.deleteRow({
-        //         databaseId,
-        //         tableId,
-        //         rowId: id
-        //     })
+
+        get: (rowId: string, queries?: string[]) =>
+            database.getRow({
+                databaseId,
+                tableId,
+                rowId,
+                queries
+            }).then(row => row as unknown as TableRowMap[T]),
+
+        create: (data: Partial<RowData<TableRowMap[T]>>, rowId?: string, permissions?: string[]) =>
+            database.createRow({
+                databaseId,
+                tableId,
+                rowId: rowId || ID.unique(),
+                data: data as Record<string, unknown>,
+                permissions
+            }).then(row => row as unknown as TableRowMap[T]),
+
+        update: (rowId: string, data: Partial<RowData<TableRowMap[T]>>, permissions?: string[]) =>
+            database.updateRow({
+                databaseId,
+                tableId,
+                rowId,
+                data: data as Record<string, unknown>,
+                permissions
+            }).then(row => row as unknown as TableRowMap[T]),
+
+        delete: (rowId: string) =>
+            database.deleteRow({
+                databaseId,
+                tableId,
+                rowId
+            }).then(() => undefined)
     };
 }
 

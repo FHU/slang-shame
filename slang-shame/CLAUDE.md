@@ -69,22 +69,41 @@ Key relationships:
 
 ### Database API Usage
 
-The `db` object from `src/database.tsx` provides type-safe access to all tables:
+The `db` object from `src/database.tsx` provides type-safe access to all tables with full CRUD operations:
 
 ```typescript
 import { db } from './database';
 import { Query } from 'appwrite';
 
-// List all rows in a table
-const groups = await db.groups.list();
+// LIST - Get all rows or with queries
+const { rows, total } = await db.groups.list();
+const activeGroups = await db.groups.list([Query.equal('isActive', true)]);
 
-// List with queries
-const activeGroups = await db.groups.list([
-  Query.equal('isActive', true)
-]);
+// GET - Fetch a single row by ID
+const group = await db.groups.get('row-id-here');
+
+// CREATE - Add a new row (rowId optional, auto-generated if omitted)
+const newGroup = await db.groups.create({
+  groupName: 'New Group',
+  isActive: true
+});
+
+// CREATE with custom ID
+const groupWithId = await db.groups.create(
+  { groupName: 'Custom ID Group', isActive: true },
+  'custom-row-id'
+);
+
+// UPDATE - Modify existing row (partial updates supported)
+const updatedGroup = await db.groups.update('row-id-here', {
+  isActive: false
+});
+
+// DELETE - Remove a row
+await db.groups.delete('row-id-here');
 ```
 
-Currently only `list()` is implemented. To add more methods (get, create, update, delete), uncomment and implement them in `src/database.tsx`.
+All methods are fully typed - TypeScript will enforce correct field types and autocomplete available fields. The `create()` and `update()` methods accept `Partial<>` data, so you only need to provide the fields you want to set.
 
 ### Type System
 
