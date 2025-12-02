@@ -1,4 +1,24 @@
+import {useState, useEffect } from 'react';
+import { db } from '../database';
+import type { Slang } from "../utils/types";
 function DevSlangEdit() {
+const [slang, setSlang] = useState<Slang[]>([])
+
+useEffect(() => {
+    getSlang();
+}, [])
+const getSlang = async () => {
+        try {
+            const {total, rows} = await db.slang.list()
+            console.log(total)
+            console.log(rows);
+            setSlang(rows);
+        }
+        catch(error){
+            console.log(error)
+        }
+}
+
   return (
     <div>
         <h1>
@@ -24,6 +44,10 @@ function DevSlangEdit() {
             </ul>
             If there is extra stuff needed, let the team know.
         </p>
+        {slang.map((s) => (<article  className='border-4 border-black' key={s.$id}>
+             <p className='text-2xl'>{s.word}</p>
+             <p></p>
+             </article>))}
     </div>
   )
 }
