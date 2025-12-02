@@ -19,6 +19,15 @@ const getSlang = async () => {
         }
 }
 
+const updateSlang = async (rowID: string, updates: Record<string, unknown> ) => {
+    try {
+        db.slang.update(rowID, updates)
+    }
+    catch(error){
+        console.log(error)
+    }
+}
+
   return (
     <div>
         <h1>
