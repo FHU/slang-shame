@@ -1,6 +1,6 @@
 import {useState, useEffect } from 'react';
 import { db } from '../database';
-import type { Slang } from "../utils/types";
+import type { Slang, RowData } from "../utils/types";
 function DevSlangEdit() {
 const [slang, setSlang] = useState<Slang[]>([])
 
@@ -10,8 +10,8 @@ useEffect(() => {
 const getSlang = async () => {
         try {
             const {total, rows} = await db.slang.list()
-            console.log(total)
-            console.log(rows);
+            //console.log(total)
+            //console.log(rows);
             setSlang(rows);
         }
         catch(error){
@@ -19,9 +19,9 @@ const getSlang = async () => {
         }
 }
 
-const updateSlang = async (rowID: string, updates: Record<string, unknown> ) => {
+const createSlang = async (data: Partial<RowData<Slang>> ) => {
     try {
-        db.slang.update(rowID, updates)
+        db.slang.create(data)
     }
     catch(error){
         console.log(error)
@@ -40,6 +40,7 @@ const updateSlang = async (rowID: string, updates: Record<string, unknown> ) => 
         <p>
             The parts of speech that can be add to partOfSpeech column of a
             slang should just be these:
+        </p>
             <ul>
                 <li>Noun</li>
                 <li>Verb</li>
@@ -52,7 +53,6 @@ const updateSlang = async (rowID: string, updates: Record<string, unknown> ) => 
                 <li>Suffix</li>
             </ul>
             If there is extra stuff needed, let the team know.
-        </p>
         {slang.map((s) => (<article  className='border-4 border-black' key={s.$id}>
              <p className='text-2xl'>{s.word}</p>
              <p></p>
