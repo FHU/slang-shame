@@ -47,7 +47,6 @@ export type Reporters = Models.Row & {
 }
 
 export type Reports = Models.Row & {
-    reportDate: string;
     reporterID: Reporters;
     suspectID: Suspects;
     slangID: Slang;

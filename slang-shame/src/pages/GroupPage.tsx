@@ -26,6 +26,10 @@ export const GroupPage = () => {
                     console.log(suspectsResult.rows);
                     setSuspects(suspectsResult.rows);
                 }
+                else
+                {
+                  throw new Error("This Group does not exist")
+                }
             }
             catch(error){
                 console.log(error)
