@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import SlangSelect from '../components/SlangSelect'
-import ReportButton from '../components/ReportButton'
+// import SlangSelect from '../components/SlangSelect'
+// import ReportButton from '../components/ReportButton'
 import { Link, useParams } from 'react-router';
-import PersonSelect from '../components/PersonSelect';
+// import PersonSelect from '../components/PersonSelect';
 import { databases } from "../appwrite";
-import { Query } from "appwrite";
+// import { Query } from "appwrite";
 
 interface SlangTerm {
   $id: string;
