@@ -10,7 +10,7 @@ useEffect(() => {
 const getSlang = async () => {
         try {
             const {total, rows} = await db.slang.list()
-            //console.log(total)
+            console.log(total)
             //console.log(rows);
             setSlang(rows);
         }
@@ -19,6 +19,7 @@ const getSlang = async () => {
         }
 }
 
+{/*If I used Form from react-router, this would probably be the action function*/}
 const createSlang = async (data: Partial<RowData<Slang>> ) => {
     try {
         db.slang.create(data)
@@ -57,6 +58,13 @@ const createSlang = async (data: Partial<RowData<Slang>> ) => {
              <p className='text-2xl'>{s.word}</p>
              <p></p>
              </article>))}
+    
+    {/*Would probably need to make a form component.
+        However, a form component might be too much work
+            converting it's object into JSON and then the right
+                type anyway.*/}
+    
+
     </div>
   )
 }
