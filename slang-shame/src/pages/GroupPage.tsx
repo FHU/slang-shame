@@ -1,42 +1,20 @@
 import {useState, useEffect } from 'react';
-import { db } from '../database';
 import GroupTitle from '../components/GroupTitle';
-//import PersonSelect from '../components/PersonSelect';
-//import GroupLeaderboard from '../components/GroupLeaderboard';
 import type { Suspects } from "../utils/types";
-import { Link, useParams } from 'react-router'; 
-import { Query } from "appwrite";
-import ReportButton from '../components/ReportButton';
+import { Link, useParams } from 'react-router';
+
+import { listGroupSuspects } from '../utils/appwriteFunctions';
+//import PersonMugshot from '../components/PersonMugshot'
+import ReportButton from '../components/SelectPersonToReportButton';
 
 export const GroupPage = () => {
     const { group: groupName } = useParams();
     const [suspects, setSuspects] = useState<Suspects[]>([])
 
     useEffect(() => {
-        const getSuspects = async () => {
-            try {
-                const {total, rows} = await db.groups.list([Query.equal("groupName", groupName || "")]);
-                console.log(total)
-                console.log(rows);
-
-                // Only fetch suspects if we found a group
-                if (rows.length > 0) {
-                    const suspectsResult = await db.suspects.list([Query.equal("groupID", rows[0].$id)]);
-                    console.log(suspectsResult.total)
-                    console.log(suspectsResult.rows);
-                    setSuspects(suspectsResult.rows);
-                }
-                else
-                {
-                  throw new Error("This Group does not exist")
-                }
-            }
-            catch(error){
-                console.log(error)
-            }
-        };
-
-        getSuspects();
+        (async () => {
+        setSuspects(await listGroupSuspects(groupName));
+        })();
     }, [groupName])
 
   return (
@@ -48,6 +26,7 @@ export const GroupPage = () => {
   </div>
 
   <div className="flex justify-center items-center mt-4">
+    {/*I would like for this to map to the component "PersonMugshot"*/}
     {suspects.map((s) => (
             <article className='border-4 border-black' key={s.$id}>
               {s.avatarURL && <img src={s.avatarURL}></img>}

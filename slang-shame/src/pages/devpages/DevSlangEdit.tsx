@@ -1,6 +1,6 @@
 import {useState, useEffect } from 'react';
-import { db } from '../database';
-import type { Slang } from "../utils/types";
+import { db } from '../../database';
+import type { Slang } from "../../utils/types";
 function DevSlangEdit() {
 const [slang, setSlang] = useState<Slang[]>([])
 

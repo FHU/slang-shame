@@ -1,9 +1,9 @@
 //import React from 'react'
 
-const PersonSelect = () => {
+const PersonMugshot = () => {
   return (
     <div>PersonSelect</div>
   )
 }
 
-export default PersonSelect
+export default PersonMugshot

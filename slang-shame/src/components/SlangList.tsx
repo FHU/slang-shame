@@ -1,6 +1,6 @@
 import SlangSelect from './SlangSelect';
 import { useState, useEffect } from 'react';
-import { db } from '../database';
+import { listSlang } from '../utils/appwriteFunctions';
 import type { Slang } from '../utils/types';
 
 type Props = {
@@ -12,20 +12,10 @@ function SlangList({selectedId, onSelect}: Props) {
   const [slang, setSlang] = useState<Slang[]>([])
 
     useEffect(() => {
-        const getSlang = async () => {
-            try {
-                const {total, rows} = await db.slang.list();
-                console.log(total)
-                console.log(rows);
-                setSlang(rows);
-                }
-            catch(error){
-                console.log(error)
-            }
-        };
-
-        getSlang();
-    }, [])
+            (async () => {
+            setSlang(await listSlang());
+            })();
+        }, [])
   return (
 <>
    {slang.map((row) => (

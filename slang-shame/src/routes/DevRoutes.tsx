@@ -1,11 +1,11 @@
 import {Routes, Route, Navigate} from 'react-router';
-import TestPage from '.././pages/TestPage';
-import TestSlangSearch from '.././pages/TestSlangSearch';
-import TestSuspectSearch from '.././pages/TestSuspectSearch';
-import DevGroupEdit from '.././pages/DevGroupEdit';
-import DevSuspectEdit from '.././pages/DevSuspectEdit';
-import DevSlangEdit from '.././pages/DevSlangEdit';
-import DevReports from '.././pages/DevReports';
+import TestPage from '../pages/devpages/TestPage';
+import TestSlangSearch from '../pages/devpages/TestSlangSearch';
+import TestSuspectSearch from '../pages/devpages/TestSuspectSearch';
+import DevGroupEdit from '.././pages/devpages/DevGroupEdit';
+import DevSuspectEdit from '.././pages/devpages/DevSuspectEdit';
+import DevSlangEdit from '.././pages/devpages/DevSlangEdit';
+import DevReports from '.././pages/devpages/DevReports';
 
 function DevRoutes() {
 

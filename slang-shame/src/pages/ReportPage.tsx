@@ -2,8 +2,6 @@ import { useState } from 'react'
 import SlangList from '../components/SlangList'
 import { Link, useParams } from 'react-router';
 
-import PersonSelect from '../components/PersonSelect';
-
 const ReportPage = () => {
     const {group:groupName, id:suspectID} = useParams()
     const [selectedSlangId, setSelectedSlangId] = useState<string | null>(null);
@@ -20,9 +18,8 @@ const ReportPage = () => {
   return (
     <>
     <div> Welcome to the report page!</div>
-    <div> How would you like to Report?</div>
     <div>
-      <h1>Select a Slang</h1>
+      <h1>Select the Slang the Perpetrator Said</h1>
 
       <SlangList
         selectedId={selectedSlangId}
@@ -34,10 +31,11 @@ const ReportPage = () => {
         Confirm Selection
       </button>
     </div>
-    <PersonSelect />
+
+
     {/*This is the back button*/}
     <Link to={`/${groupName}`} style={{ display: 'block', marginTop: '20px', color: 'blue' }}>
-    Back
+    Back to {groupName}
     </Link>
     </>
   )

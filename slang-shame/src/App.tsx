@@ -4,6 +4,7 @@ import ReportPage from './pages/ReportPage';
 import LeaderBoardPage from './pages/LeaderBoardPage'; 
 import DevRoutes from './routes/DevRoutes';
 import NotFound from './pages/NotFound'; 
+import LastReportedPage from './pages/LastReportedPage';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       {/* Normal User Front End */}
       <Route path='/:group' element={<GroupPage />} />
       <Route path="/:group/leaderboard" element={<LeaderBoardPage />} />
+      <Route path="/:group/lastreport" element={<LastReportedPage />} />
       <Route path='/:group/report/:id' element={<ReportPage />} />
       <Route path="*" element={<NotFound />} /> 
     </Routes>

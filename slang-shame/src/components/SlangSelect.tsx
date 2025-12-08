@@ -5,6 +5,7 @@ type SlangSelectProps = {
   onClick: () => void;
 };
 export default function SlangSelect({ word, selected, onClick }: SlangSelectProps) {
+  // This component needs to be made into a 
   return (
     <button
       onClick={onClick}

@@ -1,3 +1,4 @@
+/// This is the button that is used to go to the report page for the specific person on the group page ///
 import { useNavigate, useParams } from 'react-router';
 
 type ReportButtonProps = { reportId: string, firstName: string, lastName?: string | null } 
