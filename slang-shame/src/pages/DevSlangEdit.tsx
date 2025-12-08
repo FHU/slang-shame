@@ -1,6 +1,6 @@
 import {useState, useEffect } from 'react';
 import { db } from '../database';
-import type { Slang, RowData } from "../utils/types";
+import type { Slang } from "../utils/types";
 function DevSlangEdit() {
 const [slang, setSlang] = useState<Slang[]>([])
 
@@ -19,7 +19,7 @@ const getSlang = async () => {
         }
 }
 
-{/*If I used Form from react-router, this would probably be the action function*/}
+/*If I used Form from react-router, this would probably be the action function
 const createSlang = async (data: Partial<RowData<Slang>> ) => {
     try {
         db.slang.create(data)
@@ -28,6 +28,7 @@ const createSlang = async (data: Partial<RowData<Slang>> ) => {
         console.log(error)
     }
 }
+*/
 
   return (
     <div>
