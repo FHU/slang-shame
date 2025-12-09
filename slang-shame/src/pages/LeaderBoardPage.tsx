@@ -1,51 +1,19 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
-import { listGroupSuspects, listSlang } from "../utils/appwriteFunctions";
-
-interface Suspect {
-  $id: string;
-  firstName: string;
-  lastName: string;
-}
-
-interface Slang {
-  $id: string;
-  word: string;
-}
+import { getTopReports, type LeaderboardEntry } from "../utils/appwriteFunctions";
 
 export default function LeaderboardPage() {
   const { group: groupName } = useParams();
-  const [suspects, setSuspects] = useState<Suspect[]>([]);
-  const [slang, setSlang] = useState<Slang[]>([]);
+  const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
 
-  // Load suspects for this group
+  // Load leaderboard data
   useEffect(() => {
-    async function loadSuspects() {
-      const list = await listGroupSuspects(groupName);
-      const mapped: Suspect[] = list.map((s: any) => ({
-        $id: s.$id,
-        firstName: s.firstName,
-        lastName: s.lastName,
-      }));
-      mapped.sort((a, b) => a.$id.localeCompare(b.$id));
-      setSuspects(mapped);
+    async function loadLeaderboard() {
+      const data = await getTopReports(groupName);
+      setLeaderboard(data);
     }
-    loadSuspects();
+    loadLeaderboard();
   }, [groupName]);
-
-  // Load all slang terms
-  useEffect(() => {
-    async function loadSlang() {
-      const list = await listSlang();
-      const mapped: Slang[] = list.map((t: any) => ({
-        $id: t.$id,
-        word: t.word,
-      }));
-      mapped.sort((a, b) => a.$id.localeCompare(b.$id));
-      setSlang(mapped);
-    }
-    loadSlang();
-  }, []);
 
   return (
     <div className="min-h-screen bg-white dark:bg-(--color-black) px-6 py-10">
@@ -53,41 +21,46 @@ export default function LeaderboardPage() {
         {groupName} Leaderboards
       </h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl mx-auto">
+      <div className="max-w-4xl mx-auto">
 
-        {/* Suspects Leaderboard */}
+        {/* Top Reporters Leaderboard */}
         <div className="border rounded-lg p-6 shadow bg-(--color-secondary-foreground)">
-          <h2 className="text-2xl font-bold mb-4 text-(--color-primary)">Suspects</h2>
+          <h2 className="text-3xl font-bold mb-6 text-(--color-primary) text-center">Top Suspects</h2>
 
-          {suspects.map((s) => (
-            <div
-              key={s.$id}
-              className="p-3 mb-2 rounded bg-gray-100 dark:bg-gray-800 text-lg font-semibold"
-            >
-              {s.firstName} {s.lastName}
+          {leaderboard.map((entry, index) => (
+            <div key={entry.suspect.$id} className="mb-4 p-4 border rounded-lg bg-gray-50 dark:bg-gray-900">
+              <div className="flex items-center justify-between mb-2">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100">
+                  #{index + 1} {entry.suspect.firstName} {entry.suspect.lastName}
+                  {/* Show title for all suspects */}
+                  <span className="ml-2 text-sm text-(--color-secondary) font-normal">
+                    ({entry.suspect.title})
+                  </span>
+                </h3>
+                <span className="text-lg font-semibold text-(--color-primary)">
+                  {entry.totalReports} report{entry.totalReports !== 1 ? 's' : ''}
+                </span>
+              </div>
+
+              {/* Slang breakdown */}
+              {entry.slangUsage.length > 0 && (
+                <div className="mt-2 text-sm text-gray-700 dark:text-gray-300">
+                  <span className="font-semibold">Slang used: </span>
+                  {entry.slangUsage
+                    .sort((a, b) => b.count - a.count)
+                    .map((slang, idx) => (
+                      <span key={slang.slang.$id}>
+                        {slang.slang.word} ({slang.count}x)
+                        {idx < entry.slangUsage.length - 1 ? ', ' : ''}
+                      </span>
+                    ))}
+                </div>
+              )}
             </div>
           ))}
 
-          {suspects.length === 0 && (
-            <p className="text-gray-500">No suspects found.</p>
-          )}
-        </div>
-
-        {/* Slang Leaderboard */}
-        <div className="border rounded-lg p-6 shadow bg-(--color-secondary-foreground)">
-          <h2 className="text-2xl font-bold mb-4 text-(--color-primary)">Slang Terms</h2>
-
-          {slang.map((t) => (
-            <div
-              key={t.$id}
-              className="p-3 mb-2 rounded bg-gray-100 dark:bg-gray-800 text-lg font-semibold"
-            >
-              {t.word}
-            </div>
-          ))}
-
-          {slang.length === 0 && (
-            <p className="text-gray-500">No slang terms found.</p>
+          {leaderboard.length === 0 && (
+            <p className="text-gray-500 text-center">No reports found yet. Start reporting to see the leaderboard!</p>
           )}
         </div>
       </div>
