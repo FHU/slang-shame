@@ -37,7 +37,7 @@ export type Suspects = Models.Row & {
     firstName: string;
     lastName: string | null;
     title: string;
-    groupID: Groups;
+    groupID: Groups | string;
     avatarURL: string | null;
 }
 
@@ -49,10 +49,10 @@ export type Reporters = Models.Row & {
 }
 
 export type Reports = Models.Row & {
-    reporterID: Reporters;
-    suspectID: Suspects;
-    slangID: Slang;
-    groupID: Groups;
+    reporterID: Reporters | string;
+    suspectID: Suspects | string;
+    slangID: Slang | string;
+    groupID: Groups | string;
     typeOfReport: ReportsTypeOfReport;
     reportStatus: ReportsReportStatus;
 }
@@ -79,6 +79,6 @@ export type Slang = Models.Row & {
 
 export type Subgroups = Models.Row & {
     title: string;
-    suspectsID: Suspects[];
-    groupID: Groups;
+    suspectsID: Suspects[] | string[];
+    groupID: Groups | string;
 }
