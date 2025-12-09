@@ -4,24 +4,24 @@
 /* Light mode theme variables */
 :root {
   --color-primary: #6a040f;   /* deep red */
-  --color-secondary: #3d405b; /* slate blue */
-  --color-accent: #414833;    /* olive tone */
-  --color-black: #000000;     /* pure black */
+  --color-secondary: #E53935; /* slate blue */
+  --color-accent: #6a4534;    /* olive tone */
+  --color-black: #1b1919;     /* pure black */
 
-  --color-primary-foreground: #ffffff;
-  --color-secondary-foreground: #ffffff;
-  --color-accent-foreground: #ffffff;
+  --color-primary-foreground: #5e5959;
+  --color-secondary-foreground: #494444;
+  --color-accent-foreground: #524e4e;
 }
 
 /* Dark mode overrides */
 .dark {
   --color-primary: #8f1520;   /* brighter red for dark mode */
-  --color-secondary: #4b4e6e; /* lighter blue-gray */
-  --color-accent: #596146;    /* softened olive */
+  --color-secondary: #E53935; /* lighter blue-gray */
+  --color-accent: #8c1e19;    /* softened olive */
   --color-black: #0b0b0b;     /* near-black background */
 
-  --color-primary-foreground: #ffffff;
-  --color-secondary-foreground: #eaeaf5;
-  --color-accent-foreground: #eef0e8;
+  --color-primary-foreground: #5f5959;
+  --color-secondary-foreground: #5f5959;
+  --color-accent-foreground: #c5c6c2;
 }
 

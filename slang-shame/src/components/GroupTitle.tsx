@@ -1,13 +1,11 @@
 export const GroupTitle = () => {
   return (
-   <div className="flex justify-center items-center">
-    <img
-      src="/Screenshot-LogoSlang.jpeg"
-      alt="Slang Shame Logo"
-      className="w-auto h-32 mx-auto object-contain"
-    />
-   </div>
-  )
-}
-
-export default GroupTitle
+    <div className="flex justify-center items-center">
+      <img 
+        src="/SlangShame-Logo2.0.png"
+        alt="SlangShame Logo"
+        className="w-auto h-32 mx-auto object-contain"
+      />
+    </div>
+  );
+} 

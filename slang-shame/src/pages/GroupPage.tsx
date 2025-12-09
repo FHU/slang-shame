@@ -1,5 +1,5 @@
 import {useState, useEffect } from 'react';
-import GroupTitle from '../components/GroupTitle';
+import { GroupTitle } from '../components/GroupTitle';
 import type { Suspects } from "../utils/types";
 import { Link, useParams } from 'react-router';
 
@@ -26,17 +26,18 @@ export const GroupPage = () => {
           </h1>
         </div>
 
-        <div className="flex flex-wrap justify-center items-start gap-6 mb-12">
-          {suspects.map((s) => (
-            <PersonMugshot
-              key={s.$id}
-              suspectId={s.$id}
-              firstName={s.firstName}
-              lastName={s.lastName}
-              avatarURL={s.avatarURL}
-            />
-          ))}
-        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
+  {suspects.map((s) => (
+    <PersonMugshot
+      key={s.$id}
+      suspectId={s.$id}
+      firstName={s.firstName}
+      lastName={s.lastName}
+      avatarURL={s.avatarURL}
+    />
+  ))}
+</div>
+
 
         <div className="flex justify-center items-center">
           <Link to={`/${groupName}/leaderboard`}>
