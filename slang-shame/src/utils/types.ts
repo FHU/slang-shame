@@ -52,6 +52,7 @@ export type Reports = Models.Row & {
     reporterID: Reporters;
     suspectID: Suspects;
     slangID: Slang;
+    groupID: Groups;
     typeOfReport: ReportsTypeOfReport;
     reportStatus: ReportsReportStatus;
 }

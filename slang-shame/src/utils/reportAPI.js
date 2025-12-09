@@ -29,6 +29,7 @@ export async function submitReport(data) {
     }
 
     try {
+        // THIS IS NOT USING THE APPWRITE FUNCTIONALITY FROM database.tsx!
         const response = await fetch('/api/reports', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },

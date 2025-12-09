@@ -1,7 +1,7 @@
 import {useState, useEffect } from 'react';
-import { db } from '../database';
-import SlangSearch from '../components/search-comp';
-import type { Groups } from "../utils/types";
+import { db } from '../../database';
+import SlangSearch from '../../components/search-comp';
+import type { Groups } from "../../utils/types";
 
 const slangData = "PLACEHOLDER"
 

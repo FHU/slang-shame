@@ -1,22 +1,21 @@
-//import React from 'react'
 type SlangSelectProps = {
   word: string;
   selected: boolean;
   onClick: () => void;
 };
+
 export default function SlangSelect({ word, selected, onClick }: SlangSelectProps) {
   return (
     <button
       onClick={onClick}
-      style={{
-        border: selected ? "2px solid #4A90E2" : "2px solid #999",
-        backgroundColor: selected ? "#4A90E2" : "white",
-        color: selected ? "white" : "black",
-        padding: "8px 12px",
-        borderRadius: "6px",
-        margin: "4px",
-        cursor: "pointer",
-      }}
+      className={`
+        px-3 py-2 rounded-md m-1 cursor-pointer font-semibold
+        transition-all border-2
+        ${selected
+          ? 'bg-(--color-primary) text-(--color-primary-foreground) border-(--color-primary)'
+          : 'bg-white dark:bg-(--color-black) text-black dark:text-white border-gray-400 dark:border-gray-600 hover:border-(--color-secondary)'
+        }
+      `}
     >
       {word}
     </button>

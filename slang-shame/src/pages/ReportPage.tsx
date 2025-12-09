@@ -1,142 +1,68 @@
 import { useState } from 'react'
 import SlangList from '../components/SlangList'
-import { Link, useParams } from 'react-router';
-// import PersonSelect from '../components/PersonSelect';
-import { databases } from "../appwrite";
-// import { Query } from "appwrite";
-
-interface SlangTerm {
-  $id: string;
-  partOfSpeech: string;
-  word: string;
-  definition: string;
-  isActive: boolean;
-  exampleUsage: string;
-}
-
-interface FacultyMember {
-  $id: string;
-  firstName: string;
-  lastName: string;
-  title: string;
-  avatarURL: string;
-}
+import { Link, useParams, useNavigate } from 'react-router';
+import { sendReport } from '../utils/appwriteFunctions';
 
 const ReportPage = () => {
     const {group:groupName, id:suspectID} = useParams()
+    const navigate = useNavigate();
     const [selectedSlangId, setSelectedSlangId] = useState<string | null>(null);
-    
+
     // This would be the report button
-    const sendReport = () => {
+    const makeReport = async () => {
       if (!selectedSlangId) return;
-      console.log("User confirmed slang ID:", selectedSlangId);
-      console.log("Suspect is", suspectID);
-      console.log("From Group", groupName);
-      console.log("Reported by dev")
-      // Do whatever next (save, navigate, mutate, etc)
+      console.log("Reporting slang usage...");
+      const report = await sendReport({
+        suspectID: suspectID || "",
+        slangID: selectedSlangId,
+        reporterID: "dev", // Replace with actual reporter ID
+        groupName: groupName || "" // Replace with actual group ID
+      });
+      // Redirect to group page after a successful report is sent
+      if (report && groupName) {
+        navigate(`/${groupName}`);
+      }
   };
   return (
-    <>
-    <div> Welcome to the report page!</div>
-    <div> How would you like to Report?</div>
-    <div>
-      <h1>Select a Slang</h1>
+    <div className="min-h-screen bg-white dark:bg-(--color-black) transition-colors">
+      <div className="container mx-auto px-4 py-8">
+        <div className="text-center mb-8">
+          <h1 className="text-4xl font-bold text-(--color-primary) mb-4">
+            Welcome to the report page!
+          </h1>
+          <h2 className="text-2xl font-semibold text-(--color-secondary) dark:text-(--color-secondary-foreground)">
+            Select the Slang the Perpetrator Said
+          </h2>
+        </div>
 
-      <SlangList
-        selectedId={selectedSlangId}
-        onSelect={(id) => setSelectedSlangId(id)}
-      />
+        <div className="max-w-4xl mx-auto mb-8">
+          <SlangList
+            selectedId={selectedSlangId}
+            onSelect={(id) => setSelectedSlangId(id)}
+          />
+        </div>
 
-      {/*This will be the REPORT button.*/}
-      <button disabled={!selectedSlangId} onClick={sendReport}>
-        Confirm Selection
-      </button>
+        <div className="flex justify-center mb-8">
+          <button
+            disabled={!selectedSlangId}
+            onClick={makeReport}
+            className="text-2xl font-bold px-8 py-4 rounded-lg border-4 transition-all disabled:opacity-50 disabled:cursor-not-allowed bg-(--color-primary) text-(--color-primary-foreground) border-(--color-primary) hover:opacity-90"
+          >
+            Confirm Selection
+          </button>
+        </div>
+
+        <div className="text-center">
+          <Link
+            to={`/${groupName}`}
+            className="text-xl font-semibold text-(--color-secondary) hover:text-(--color-primary) transition-colors underline"
+          >
+            Back to {groupName}
+          </Link>
+        </div>
+      </div>
     </div>
-    <PersonSelect />
-    {/*This is the back button*/}
-    <Link to={`/${groupName}`} style={{ display: 'block', marginTop: '20px', color: 'blue' }}>
-    Back
-    </Link>
-    </>
   )
 }
 
-export default function ReportPage() {
-  const params = useParams();
-  const [slangTerms, setSlangTerms] = useState<SlangTerm[]>([]);
-  const [faculty, setFaculty] = useState<FacultyMember[]>([]);
-
-    useEffect(() => {
-      const getSlang = async () => {
-        try {
-          const res = await databases.listDocuments(
-            import.meta.env.VITE_APPWRITE_DB_ID,
-            import.meta.env.VITE_APPWRITE_SLANG_TABLE
-          );
-
-          const mapped: SlangTerm[] = res.documents.map((doc: any) => ({
-            $id: doc.$id,
-            word: doc.word,
-            partOfSpeech: doc.partOfSpeech,
-            definition: doc.definition,
-            isActive: doc.isActive,
-            exampleUsage: doc.exampleUsage
-          }));
-
-          setSlangTerms(mapped);
-        } catch (err) {
-          console.error("Error fetching slang terms:", err);
-        }
-      };
-
-      getSlang();
-    }, []);
-
-  useEffect(() => {
-    const getFaculty = async () => {
-      try {
-        const res = await databases.listDocuments(
-          import.meta.env.VITE_APPWRITE_DB_ID,
-          import.meta.env.VITE_APPWRITE_SUSPECT_TABLE
-        );
-
-        const mapped: FacultyMember[] = res.documents.map((doc: any) => ({
-          $id: doc.$id,
-          firstName: doc.firstName,
-          lastName: doc.lastName,
-          title: doc.title,
-          avatarURL: doc.avatarURL
-        }));
-
-        setFaculty(mapped);
-      } catch (err) {
-        console.error("Error fetching faculty:", err);
-      }
-    };
-
-    getFaculty();
-  }, []);
-
-  return (
-    <>
-      <div>Welcome to the report page!</div>
-      <div>How would you like to Report?</div>
-
-      {/* <SlangSelect /> */}
-      {/* <PersonSelect /> */}
-
-      <div style={{ marginTop: "2rem" }}>
-        {faculty.map((person) => (
-          <FacultyCard key={person.$id} person={person} />
-        ))}
-      </div>
-
-      <Link
-        to={`/${params.group}`}
-        style={{ display: "block", marginTop: "20px", color: "blue" }}
-      >
-        Back
-      </Link>
-    </>
-  );
-}
+export default ReportPage;

@@ -1,6 +1,6 @@
 import { Link, useParams } from 'react-router';
 
-const LeaderboardPage = () => {
+const LastReportedPage = () => {
   const { group } = useParams();
 
   return (
@@ -21,4 +21,4 @@ const LeaderboardPage = () => {
   );
 };
 
-export default LeaderboardPage
+export default LastReportedPage

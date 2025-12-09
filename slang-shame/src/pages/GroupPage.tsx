@@ -1,79 +1,53 @@
 import {useState, useEffect } from 'react';
-import { db } from '../database';
 import GroupTitle from '../components/GroupTitle';
-//import PersonSelect from '../components/PersonSelect';
-//import GroupLeaderboard from '../components/GroupLeaderboard';
 import type { Suspects } from "../utils/types";
-import { Link, useParams } from 'react-router'; 
-import { Query } from "appwrite";
-import ReportButton from '../components/ReportButton';
+import { Link, useParams } from 'react-router';
+
+import { listGroupSuspects } from '../utils/appwriteFunctions';
+import PersonMugshot from '../components/PersonMugshot';
 
 export const GroupPage = () => {
     const { group: groupName } = useParams();
     const [suspects, setSuspects] = useState<Suspects[]>([])
 
     useEffect(() => {
-        const getSuspects = async () => {
-            try {
-                const {total, rows} = await db.groups.list([Query.equal("groupName", groupName || "")]);
-                console.log(total)
-                console.log(rows);
-
-                // Only fetch suspects if we found a group
-                if (rows.length > 0) {
-                    const suspectsResult = await db.suspects.list([Query.equal("groupID", rows[0].$id)]);
-                    console.log(suspectsResult.total)
-                    console.log(suspectsResult.rows);
-                    setSuspects(suspectsResult.rows);
-                }
-                else
-                {
-                  throw new Error("This Group does not exist")
-                }
-            }
-            catch(error){
-                console.log(error)
-            }
-        };
-
-        getSuspects();
+        (async () => {
+        setSuspects(await listGroupSuspects(groupName));
+        })();
     }, [groupName])
 
   return (
-    <>
-    
-  <div>
-    <GroupTitle />
-    {groupName}
-  </div>
+    <div className="min-h-screen bg-white dark:bg-(--color-black) transition-colors">
+      <div className="container mx-auto px-4 py-8">
+        <div className="text-center mb-8">
+          <GroupTitle />
+          <h1 className="text-4xl font-bold text-(--color-primary) dark:text-(--color-primary) mt-4">
+            {groupName}
+          </h1>
+        </div>
 
-  <div className="flex justify-center items-center mt-4">
-    {suspects.map((s) => (
-            <article className='border-4 border-black' key={s.$id}>
-              {s.avatarURL && <img src={s.avatarURL}></img>}
-              <ReportButton reportId={s.$id} firstName={s.firstName} lastName={s.lastName}/>
-            </article> ))}
+        <div className="flex flex-wrap justify-center items-start gap-6 mb-12">
+          {suspects.map((s) => (
+            <PersonMugshot
+              key={s.$id}
+              suspectId={s.$id}
+              firstName={s.firstName}
+              lastName={s.lastName}
+              avatarURL={s.avatarURL}
+            />
+          ))}
+        </div>
 
-
-  </div>
-
-  <div className="flex justify-center items-center mt-4">
-        <Link to={`/${groupName}/leaderboard`}>
-          <div className="text-4xl font-bold text-blue-600 text-center no-underline">
-            Leaderboard
-          </div>
-        </Link>
-
+        <div className="flex justify-center items-center">
+          <Link to={`/${groupName}/leaderboard`}>
+            <div className="text-4xl font-bold text-(--color-primary) hover:text-(--color-secondary) transition-colors text-center px-8 py-4 border-4 border-(--color-primary) rounded-lg">
+              Leaderboard
+            </div>
+          </Link>
+        </div>
+      </div>
     </div>
-
-    <div className="flex justify-center items-center mt-4"></div>
-      <h1>Groups</h1>
-
-      {groups.map((g) => (
-        <GroupCard key={g.$id} group={g} />
-      ))}
-    </>
-  );
-};
+  )
+}
 
 export default GroupPage;
