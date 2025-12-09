@@ -15,7 +15,7 @@ const NotFound: React.FC = () => {
       style={{ backgroundImage: 'url("/Dark404.jpg")' }}
     >
       {/* Stylized 404 text */}
-      <h1 className="text-9xl mb-2 text-[var(--color-primary)] drop-shadow-lg">
+      <h1 className="text-9xl mb-2 text-(--color-primary) drop-shadow-lg">
         404
       </h1>
 
@@ -29,7 +29,7 @@ const NotFound: React.FC = () => {
       <div className="flex gap-4 mb-6">
         <Link
           to={params.group ? `/${params.group}` : "/FHU"}
-          className="px-5 py-2.5 bg-[var(--color-primary)] text-black rounded-lg no-underline font-bold shadow-lg hover:opacity-90 transition-opacity"
+          className="px-5 py-2.5 bg-(--color-primary) text-black rounded-lg no-underline font-bold shadow-lg hover:opacity-90 transition-opacity"
         >
           Go home (touch grass)
         </Link>

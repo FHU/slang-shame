@@ -12,8 +12,8 @@ export default function SlangSelect({ word, selected, onClick }: SlangSelectProp
         px-3 py-2 rounded-md m-1 cursor-pointer font-semibold
         transition-all border-2
         ${selected
-          ? 'bg-[var(--color-primary)] text-[var(--color-primary-foreground)] border-[var(--color-primary)]'
-          : 'bg-white dark:bg-[var(--color-black)] text-black dark:text-white border-gray-400 dark:border-gray-600 hover:border-[var(--color-secondary)]'
+          ? 'bg-(--color-primary) text-(--color-primary-foreground) border-(--color-primary)'
+          : 'bg-white dark:bg-(--color-black) text-black dark:text-white border-gray-400 dark:border-gray-600 hover:border-(--color-secondary)'
         }
       `}
     >

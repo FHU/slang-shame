@@ -24,13 +24,13 @@ const ReportPage = () => {
       }
   };
   return (
-    <div className="min-h-screen bg-white dark:bg-[var(--color-black)] transition-colors">
+    <div className="min-h-screen bg-white dark:bg-(--color-black) transition-colors">
       <div className="container mx-auto px-4 py-8">
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-[var(--color-primary)] mb-4">
+          <h1 className="text-4xl font-bold text-(--color-primary) mb-4">
             Welcome to the report page!
           </h1>
-          <h2 className="text-2xl font-semibold text-[var(--color-secondary)] dark:text-[var(--color-secondary-foreground)]">
+          <h2 className="text-2xl font-semibold text-(--color-secondary) dark:text-(--color-secondary-foreground)">
             Select the Slang the Perpetrator Said
           </h2>
         </div>
@@ -46,7 +46,7 @@ const ReportPage = () => {
           <button
             disabled={!selectedSlangId}
             onClick={makeReport}
-            className="text-2xl font-bold px-8 py-4 rounded-lg border-4 transition-all disabled:opacity-50 disabled:cursor-not-allowed bg-[var(--color-primary)] text-[var(--color-primary-foreground)] border-[var(--color-primary)] hover:opacity-90"
+            className="text-2xl font-bold px-8 py-4 rounded-lg border-4 transition-all disabled:opacity-50 disabled:cursor-not-allowed bg-(--color-primary) text-(--color-primary-foreground) border-(--color-primary) hover:opacity-90"
           >
             Confirm Selection
           </button>
@@ -55,7 +55,7 @@ const ReportPage = () => {
         <div className="text-center">
           <Link
             to={`/${groupName}`}
-            className="text-xl font-semibold text-[var(--color-secondary)] hover:text-[var(--color-primary)] transition-colors underline"
+            className="text-xl font-semibold text-(--color-secondary) hover:text-(--color-primary) transition-colors underline"
           >
             Back to {groupName}
           </Link>
@@ -65,4 +65,4 @@ const ReportPage = () => {
   )
 }
 
-export default ReportPage
+export default ReportPage;

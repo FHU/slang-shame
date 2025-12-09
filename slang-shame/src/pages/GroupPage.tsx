@@ -17,11 +17,11 @@ export const GroupPage = () => {
     }, [groupName])
 
   return (
-    <div className="min-h-screen bg-white dark:bg-[var(--color-black)] transition-colors">
+    <div className="min-h-screen bg-white dark:bg-(--color-black) transition-colors">
       <div className="container mx-auto px-4 py-8">
         <div className="text-center mb-8">
           <GroupTitle />
-          <h1 className="text-4xl font-bold text-[var(--color-primary)] dark:text-[var(--color-primary)] mt-4">
+          <h1 className="text-4xl font-bold text-(--color-primary) dark:text-(--color-primary) mt-4">
             {groupName}
           </h1>
         </div>
@@ -40,7 +40,7 @@ export const GroupPage = () => {
 
         <div className="flex justify-center items-center">
           <Link to={`/${groupName}/leaderboard`}>
-            <div className="text-4xl font-bold text-[var(--color-primary)] hover:text-[var(--color-secondary)] transition-colors text-center px-8 py-4 border-4 border-[var(--color-primary)] rounded-lg">
+            <div className="text-4xl font-bold text-(--color-primary) hover:text-(--color-secondary) transition-colors text-center px-8 py-4 border-4 border-(--color-primary) rounded-lg">
               Leaderboard
             </div>
           </Link>
@@ -50,4 +50,4 @@ export const GroupPage = () => {
   )
 }
 
-export default GroupPage
+export default GroupPage;

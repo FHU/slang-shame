@@ -3,6 +3,15 @@ import { db } from '../../database';
 import SlangSearch from '../../components/search-comp';
 import type { Groups } from "../../utils/types";
 
+const slangData = "PLACEHOLDER"
+
+const fetchSlangData = async () => {
+  const res = await fetch(slangData);
+  const data = await res.json();
+  console.log(data);
+  return data;
+};
+
 function TestPage() {
     const [groups, setGroups] = useState<Groups[]>([])
 
