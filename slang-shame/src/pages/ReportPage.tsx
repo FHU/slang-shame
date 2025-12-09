@@ -35,7 +35,7 @@ const ReportPage = () => {
           </h2>
         </div>
 
-        <div className="max-w-4xl mx-auto mb-8">
+        <div className="max-w-4xl mx-auto mb-8 flex justify-center">
           <SlangList
             selectedId={selectedSlangId}
             onSelect={(id) => setSelectedSlangId(id)}
