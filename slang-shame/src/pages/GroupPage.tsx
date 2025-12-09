@@ -63,12 +63,17 @@ export const GroupPage = () => {
             Leaderboard
           </div>
         </Link>
-      </div>
 
+    </div>
 
-  
-   </>
-  )
-}
+    <div className="flex justify-center items-center mt-4"></div>
+      <h1>Groups</h1>
 
-export default GroupPage
+      {groups.map((g) => (
+        <GroupCard key={g.$id} group={g} />
+      ))}
+    </>
+  );
+};
+
+export default GroupPage;
