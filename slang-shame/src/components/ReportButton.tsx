@@ -1,17 +1,15 @@
-//import React from 'react'
+import { useNavigate, useParams } from 'react-router';
 
-// const ReportButton = () => {
-//   return (
-//     <div>ReportButton</div>
-//   )
-// }
+type ReportButtonProps = { reportId: string, firstName: string, lastName?: string | null } 
 
-// export default ReportButton
-
-import { useNavigate, useParams } from 'react-router' 
-type ReportButtonProps = { reportId: string } 
-const ReportButton = ({ reportId }: ReportButtonProps) => { const navigate = useNavigate() 
-const { group } = useParams() 
-const handleClick = () => { if (group) { navigate(`/${group}/report/${reportId}`) } } 
-return ( <button onClick={handleClick}>Report</button> ) } 
+const ReportButton = ({ reportId, firstName, lastName }: ReportButtonProps) => { 
+    const navigate = useNavigate() 
+    const { group } = useParams()
+    const fullName = (lastName != null ) ? `${firstName} ${lastName}`: firstName
+    const handleClick = () => { if (group) { navigate(`/${group}/report/${reportId}`) } } 
+    return ( <button 
+        className="text-4xl font-bold text-blue-600 text-center no-underline"
+        onClick={handleClick}>
+            Report {`${fullName}`}
+        </button> ) } 
 export default ReportButton

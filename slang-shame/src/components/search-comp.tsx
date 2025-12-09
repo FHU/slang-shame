@@ -58,6 +58,7 @@ const SlangSearch = ({ slangDataSource = '/slang.json', peopleDataSource = '/peo
   const filteredData = useMemo(() => {
     try {
       return data.filter((item: SearchItem) => {
+        // If we're searching slang terms
         if (searchType === 'slang') {
           const slangItem = item as SlangItem;
           const term = slangItem.term ? slangItem.term.toLowerCase() : '';
@@ -67,6 +68,7 @@ const SlangSearch = ({ slangDataSource = '/slang.json', peopleDataSource = '/peo
             partOfSpeech.includes(searchTerm.toLowerCase())
           );
         } else {
+          // If we're searching people(faculty/staff)
           const personItem = item as PersonItem;
           const firstName = personItem.firstName ? personItem.firstName.toLowerCase() : '';
           const lastName = personItem.lastName ? personItem.lastName.toLowerCase() : '';

@@ -1,113 +1,64 @@
+import {useState, useEffect } from 'react';
+import { db } from '../database';
 import GroupTitle from '../components/GroupTitle';
-import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router";
-import { Client, Databases } from "appwrite";
-
-export const client = new Client()
-  .setEndpoint(import.meta.env.VITE_APPWRITE_ENDPOINT)
-  .setProject(import.meta.env.VITE_APPWRITE_PROJECT_ID);
-
-export const databases = new Databases(client);
-
-interface Group {
-  $id: string;
-  groupName: string;
-  // description?: string;
-}
-
-function GroupCard({ group }: { group: Group }) {
-  return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        gap: "1rem",
-        border: "1px solid #ddd",
-        borderRadius: "12px",
-        padding: "1rem",
-        marginBottom: "1rem",
-        background: "#fafafa"
-      }}
-    >
-      <img
-        src="https://fhu.edu/wp-content/uploads/faculty-placeholder.jpg"
-        alt={group.groupName}
-        style={{
-          width: "80px",
-          height: "80px",
-          objectFit: "cover",
-          borderRadius: "50%"
-        }}
-      />
-
-      <div style={{ flexGrow: 1 }}>
-        <h2 style={{ margin: 0 }}>{group.groupName}</h2>
-      </div>
-
-      <Link
-        to={`/${group.$id}`}
-        style={{
-          padding: "0.5rem 1rem",
-          borderRadius: "8px",
-          border: "none",
-          background: "#1d4ed8",
-          color: "white",
-          cursor: "pointer",
-          fontWeight: "bold",
-          textDecoration: "none"
-        }}
-      >
-        Open
-      </Link>
-    </div>
-  );
-}
+//import PersonSelect from '../components/PersonSelect';
+//import GroupLeaderboard from '../components/GroupLeaderboard';
+import type { Suspects } from "../utils/types";
+import { Link, useParams } from 'react-router'; 
+import { Query } from "appwrite";
+import ReportButton from '../components/ReportButton';
 
 export const GroupPage = () => {
-  const params = useParams();
-  const [groups, setGroups] = useState<Group[]>([]);
+    const { group: groupName } = useParams();
+    const [suspects, setSuspects] = useState<Suspects[]>([])
 
-  useEffect(() => {
-    const loadGroups = async () => {
-      try {
-        const res = await databases.listDocuments(
-          import.meta.env.VITE_APPWRITE_DB_ID,
-          import.meta.env.VITE_APPWRITE_GROUP_TABLE
-        );
+    useEffect(() => {
+        const getSuspects = async () => {
+            try {
+                const {total, rows} = await db.groups.list([Query.equal("groupName", groupName || "")]);
+                console.log(total)
+                console.log(rows);
 
-        const mapped: Group[] = res.documents.map((doc: any) => ({
-          $id: doc.$id,
-          groupName: doc.groupName,
-          // description: doc.description,
-        }));
+                // Only fetch suspects if we found a group
+                if (rows.length > 0) {
+                    const suspectsResult = await db.suspects.list([Query.equal("groupID", rows[0].$id)]);
+                    console.log(suspectsResult.total)
+                    console.log(suspectsResult.rows);
+                    setSuspects(suspectsResult.rows);
+                }
+                else
+                {
+                  throw new Error("This Group does not exist")
+                }
+            }
+            catch(error){
+                console.log(error)
+            }
+        };
 
-        setGroups(mapped);
-      } catch (err) {
-        console.error("Error fetching groups:", err);
-      }
-    };
-
-    loadGroups();
-  }, []);
+        getSuspects();
+    }, [groupName])
 
   return (
     <>
-      <div>
-      <GroupTitle />
-      {params.group}
-    </div>
+    
+  <div>
+    <GroupTitle />
+    {groupName}
+  </div>
 
-    <div className="flex justify-center items-center mt-4">
-      <Link
-        to={`/${params.group}/report/123`}
-        className="text-4xl font-bold text-blue-600 text-center no-underline"
-    >
-        Report Someone
-      </Link>
-    </div>
+  <div className="flex justify-center items-center mt-4">
+    {suspects.map((s) => (
+            <article className='border-4 border-black' key={s.$id}>
+              {s.avatarURL && <img src={s.avatarURL}></img>}
+              <ReportButton reportId={s.$id} firstName={s.firstName} lastName={s.lastName}/>
+            </article> ))}
 
-    <div className="flex justify-center items-center mt-4">
-      <Link to={`/${params.group}/leaderboard`}>
+
+  </div>
+
+  <div className="flex justify-center items-center mt-4">
+        <Link to={`/${groupName}/leaderboard`}>
           <div className="text-4xl font-bold text-blue-600 text-center no-underline">
             Leaderboard
           </div>

@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
-// import SlangSelect from '../components/SlangSelect'
-// import ReportButton from '../components/ReportButton'
+import { useState } from 'react'
+import SlangList from '../components/SlangList'
 import { Link, useParams } from 'react-router';
 // import PersonSelect from '../components/PersonSelect';
 import { databases } from "../appwrite";
@@ -23,60 +22,43 @@ interface FacultyMember {
   avatarURL: string;
 }
 
-function FacultyCard({ person }: { person: FacultyMember }) {
-  const { firstName, lastName, title, avatarURL } = person;
-
-  const handleReport = () => {
-    console.log(`Reported ${firstName} ${lastName} for slang crimes.`);
+const ReportPage = () => {
+    const {group:groupName, id:suspectID} = useParams()
+    const [selectedSlangId, setSelectedSlangId] = useState<string | null>(null);
+    
+    // This would be the report button
+    const sendReport = () => {
+      if (!selectedSlangId) return;
+      console.log("User confirmed slang ID:", selectedSlangId);
+      console.log("Suspect is", suspectID);
+      console.log("From Group", groupName);
+      console.log("Reported by dev")
+      // Do whatever next (save, navigate, mutate, etc)
   };
-
   return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        gap: "1rem",
-        border: "1px solid #ddd",
-        borderRadius: "12px",
-        padding: "1rem",
-        marginBottom: "1rem",
-        background: "#fafafa"
-      }}
-    >
-      <img
-        src={avatarURL}
-        alt={`${firstName} ${lastName}`}
-        style={{
-          width: "80px",
-          height: "80px",
-          objectFit: "cover",
-          borderRadius: "50%"
-        }}
+    <>
+    <div> Welcome to the report page!</div>
+    <div> How would you like to Report?</div>
+    <div>
+      <h1>Select a Slang</h1>
+
+      <SlangList
+        selectedId={selectedSlangId}
+        onSelect={(id) => setSelectedSlangId(id)}
       />
 
-      <div style={{ flexGrow: 1 }}>
-        <h2 style={{ margin: 0 }}>
-          {firstName} {lastName}
-        </h2>
-        <p style={{ margin: 0, color: "#555" }}>{title}</p>
-      </div>
-
-      <button
-        onClick={handleReport}
-        style={{
-          padding: "0.5rem 1rem",
-          borderRadius: "8px",
-          border: "none",
-          background: "#d62828",
-          color: "white",
-          cursor: "pointer",
-          fontWeight: "bold"
-        }}
-      >
-        Report
+      {/*This will be the REPORT button.*/}
+      <button disabled={!selectedSlangId} onClick={sendReport}>
+        Confirm Selection
       </button>
     </div>
-  );
+    <PersonSelect />
+    {/*This is the back button*/}
+    <Link to={`/${groupName}`} style={{ display: 'block', marginTop: '20px', color: 'blue' }}>
+    Back
+    </Link>
+    </>
+  )
 }
 
 export default function ReportPage() {

@@ -1,6 +1,7 @@
 import {useState, useEffect } from 'react';
-import { db } from '../appwriteConfig';
+import { db } from '../database';
 import SlangSearch from '../components/search-comp';
+import type { Groups } from "../utils/types";
 
 const slangData = "PLACEHOLDER"
 
@@ -12,7 +13,7 @@ const fetchSlangData = async () => {
 };
 
 function TestPage() {
-    const [groups, setGroups] = useState<any[]>([])
+    const [groups, setGroups] = useState<Groups[]>([])
 
     useEffect(() => {
         getGroups();
@@ -20,8 +21,7 @@ function TestPage() {
 
     const getGroups = async () => {
         try {
-            const {total, rows} = await db.listRows({
-                databaseId:'690fa680000a3526ba6a', tableId:'groups'})
+            const {total, rows} = await db.groups.list()
             console.log(total)
             console.log(rows);
             setGroups(rows);
@@ -38,11 +38,11 @@ function TestPage() {
         <h2 className='mt-8'> Here is the sample groups:</h2>
         <div className='m-2'>
         {groups.map((g) => (
-    <article className='border-4 border-black' key={g.$id}>
-      <h3 className='text-2xl'>{g.groupName}</h3>
-      <p>Active: {g.isActive ? 'Yes' : 'No'}</p>
-      <p>Suspects: {g.suspectCount ? g.suspectCount : <span>null</span>}</p>
-      <p>Reporters: {g.reporterCount ? g.reporterCount : <span>null</span>}</p>
+            <article className='border-4 border-black' key={g.$id}>
+                <h3 className='text-2xl'>{g.groupName}</h3>
+                <p>Active: {g.isActive ? 'Yes' : 'No'}</p>
+                <p>Suspects: {g.suspectCount ? g.suspectCount : <span>null</span>}</p>
+                <p>Reporters: {g.reporterCount ? g.reporterCount : <span>null</span>}</p>
     </article>
 
   ))}
