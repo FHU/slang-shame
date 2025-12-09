@@ -1,6 +1,6 @@
-import { Query } from "appwrite";
+import { Query, Role, Permission } from "appwrite";
 import { db } from '../database';
-
+import { ensureSession } from '../appwriteConfig';
 export const listGroupSuspects = async (groupName: string | undefined) => {
             try {
                 const returned_group = await db.groups.list([Query.equal("groupName", groupName || "")]);
@@ -44,9 +44,20 @@ export const listSlang = async () => {
             }
         };
 
-export const sendReport = async (reportData: { suspectID: string; slangID: string; reporterID: string; groupID: string; }) => {
+export const sendReport = async (reportData: { suspectID: string; slangID: string; reporterID: string; groupName: string; }) => {
     try {
-        const createdReport = await db.reports.create(reportData);
+        // Ensure anonymous session exists before making any database calls
+        await ensureSession();
+
+        // Need to get the various fields and make them into Suspect, Group, Reporter, and Slang Objects
+        const finishedReportData = {};
+        finishedReportData['suspectID'] = await db.suspects.get(reportData.suspectID);
+        finishedReportData['slangID'] = await db.slang.get(reportData.slangID);
+        finishedReportData['reporterID'] = await db.reporters.get(reportData.reporterID);
+        const groupList = await db.groups.list([Query.equal("groupName", reportData.groupName || "")]);
+        finishedReportData['groupID'] = groupList.rows[0];
+
+        const createdReport = await db.reports.create(finishedReportData, undefined, [Permission.read(Role.any()), Permission.write(Role.any()),  Permission.delete(Role.any()), Permission.update(Role.any())]);
         return createdReport;
     }
     catch(error){

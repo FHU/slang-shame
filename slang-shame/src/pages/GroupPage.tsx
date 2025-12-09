@@ -4,8 +4,7 @@ import type { Suspects } from "../utils/types";
 import { Link, useParams } from 'react-router';
 
 import { listGroupSuspects } from '../utils/appwriteFunctions';
-//import PersonMugshot from '../components/PersonMugshot'
-import ReportButton from '../components/SelectPersonToReportButton';
+import PersonMugshot from '../components/PersonMugshot';
 
 export const GroupPage = () => {
     const { group: groupName } = useParams();
@@ -18,35 +17,36 @@ export const GroupPage = () => {
     }, [groupName])
 
   return (
-    <>
-    
-  <div>
-    <GroupTitle />
-    {groupName}
-  </div>
+    <div className="min-h-screen bg-white dark:bg-[var(--color-black)] transition-colors">
+      <div className="container mx-auto px-4 py-8">
+        <div className="text-center mb-8">
+          <GroupTitle />
+          <h1 className="text-4xl font-bold text-[var(--color-primary)] dark:text-[var(--color-primary)] mt-4">
+            {groupName}
+          </h1>
+        </div>
 
-  <div className="flex justify-center items-center mt-4">
-    {/*I would like for this to map to the component "PersonMugshot"*/}
-    {suspects.map((s) => (
-            <article className='border-4 border-black' key={s.$id}>
-              {s.avatarURL && <img src={s.avatarURL}></img>}
-              <ReportButton reportId={s.$id} firstName={s.firstName} lastName={s.lastName}/>
-            </article> ))}
+        <div className="flex flex-wrap justify-center items-start gap-6 mb-12">
+          {suspects.map((s) => (
+            <PersonMugshot
+              key={s.$id}
+              suspectId={s.$id}
+              firstName={s.firstName}
+              lastName={s.lastName}
+              avatarURL={s.avatarURL}
+            />
+          ))}
+        </div>
 
-
-  </div>
-
-  <div className="flex justify-center items-center mt-4">
-        <Link to={`/${groupName}/leaderboard`}>
-          <div className="text-4xl font-bold text-blue-600 text-center no-underline">
-            Leaderboard
-          </div>
-        </Link>
+        <div className="flex justify-center items-center">
+          <Link to={`/${groupName}/leaderboard`}>
+            <div className="text-4xl font-bold text-[var(--color-primary)] hover:text-[var(--color-secondary)] transition-colors text-center px-8 py-4 border-4 border-[var(--color-primary)] rounded-lg">
+              Leaderboard
+            </div>
+          </Link>
+        </div>
       </div>
-
-
-  
-   </>
+    </div>
   )
 }
 

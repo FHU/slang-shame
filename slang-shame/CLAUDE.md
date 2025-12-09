@@ -10,7 +10,7 @@ Slang Shame is a React + TypeScript + Vite application that tracks and reports s
 
 ### Running the Application
 ```bash
-npm run dev          # Start development server with Vite
+npm run dev          # Start development server with Vite (localhost:5173)
 npm run preview      # Preview production build locally
 ```
 
@@ -18,6 +18,13 @@ npm run preview      # Preview production build locally
 ```bash
 npm run build        # Compile TypeScript and build for production (tsc -b && vite build)
 npm run lint         # Run ESLint on the codebase
+npm run lint -- --fix  # Auto-fix linting issues
+```
+
+### Type Checking
+```bash
+npx tsc --noEmit     # Run TypeScript compiler without emitting output (no build)
+npx tsc -b           # Incremental TypeScript build (used in npm run build)
 ```
 
 ## Architecture
@@ -112,3 +119,55 @@ All Appwrite types extend `Models.Row` and are defined in `src/utils/types.ts`. 
 ## Styling
 
 Uses Tailwind CSS v4 with the Vite plugin (`@tailwindcss/vite`).
+
+## Key Development Patterns
+
+### Component Architecture
+
+Components follow a standard React + TypeScript pattern:
+- Props are typed as `TypeName` interfaces at the top of the component file
+- Functional components with hooks (useState, useParams, useNavigate)
+- Tailwind classes for styling (no external CSS files)
+
+### Routing Patterns
+
+- **User Routes**: Dynamic `/:group/*` pattern for group-specific pages
+  - `/:group` - Main group page displaying suspects
+  - `/:group/leaderboard` - Report statistics
+  - `/:group/lastreport` - Recently submitted reports
+  - `/:group/report/:id` - Individual suspect report submission
+- **Dev Routes**: All dev pages under `/dev/*` for testing and API management
+
+### Database Interaction Patterns
+
+The `db` object provides a consistent interface. Common patterns:
+
+```typescript
+// Fetch with queries (most common)
+const suspects = await db.suspects.list([Query.equal("groupID", groupId)]);
+
+// Single row operations
+const suspect = await db.suspects.get(suspectId);
+
+// Creating reports with permissions (all CRUD allowed)
+const report = await db.reports.create(reportData, undefined,
+  [Permission.read(Role.any()), Permission.write(Role.any()),
+   Permission.delete(Role.any()), Permission.update(Role.any())]);
+```
+
+### Utility Function Patterns
+
+`src/utils/appwriteFunctions.ts` contains business logic that:
+- Wraps multi-step database operations (e.g., `sendReport`)
+- Handles error cases silently (logs to console, returns empty arrays/undefined)
+- Returns typed data or empty values on failure
+
+## Known Codebase Notes
+
+- **ReportPage.tsx** and **appwriteFunctions.ts** are currently under development (uncommitted changes on Slang-Call branch)
+- Dev pages are unstyled and primarily for testing/debugging
+- Reporter IDs are currently hardcoded as "dev" in development
+- Search components (`SearchBar.tsx`, `search-comp.tsx`) - naming suggests refactoring may be needed
+- No formal error handling UI - errors logged to console only
+- Calls to the appwrite database should be put into appwriteFunctions.ts
+- Use tailwind styling and the color variables specified
