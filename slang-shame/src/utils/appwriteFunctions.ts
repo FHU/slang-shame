@@ -49,15 +49,23 @@ export const sendReport = async (reportData: { suspectID: string; slangID: strin
         // Ensure anonymous session exists before making any database calls
         await ensureSession();
 
-        // Need to get the various fields and make them into Suspect, Group, Reporter, and Slang Objects
-        const finishedReportData = {};
-        finishedReportData['suspectID'] = await db.suspects.get(reportData.suspectID);
-        finishedReportData['slangID'] = await db.slang.get(reportData.slangID);
-        finishedReportData['reporterID'] = await db.reporters.get(reportData.reporterID);
+        // Get the group ID from the group name
         const groupList = await db.groups.list([Query.equal("groupName", reportData.groupName || "")]);
-        finishedReportData['groupID'] = groupList.rows[0];
 
-        const createdReport = await db.reports.create(finishedReportData, undefined, [Permission.read(Role.any()), Permission.write(Role.any()),  Permission.delete(Role.any()), Permission.update(Role.any())]);
+        if (groupList.rows.length === 0) {
+            throw new Error(`Group not found: ${reportData.groupName}`);
+        }
+
+        // Create report with just the IDs (strings), not the full objects
+        const createdReport = await db.reports.create({
+            suspectID: reportData.suspectID,
+            slangID: reportData.slangID,
+            reporterID: reportData.reporterID,
+            groupID: groupList.rows[0].$id,
+            typeOfReport: "UnDetailed",
+            reportStatus: "Assumed"
+        }, undefined, [Permission.read(Role.any()), Permission.write(Role.any()),  Permission.delete(Role.any())]);
+
         return createdReport;
     }
     catch(error){
